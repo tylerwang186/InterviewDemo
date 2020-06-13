@@ -1,0 +1,31 @@
+﻿
+<script language="javascript">
+
+    function GetPanels() {
+        $.ajax({
+            url: "https://localhost:44345/api/panel",
+            type: "GET",
+            success: function (data) {
+                $("#tblPanel tbody").empty();
+                $.each(data.result, function (i, val) {
+                    var $row = $('<tr onclick=GetKeys('+val.PanelId+')></tr>');
+                    $row.append($('<td></td>').html(val.PanelId));
+                    $row.append($('<td></td>').html(val.PanelName));
+                    $row.append($('<td></td>').html(val.PanelStatus));
+                    $("#tblPanel tbody").append($row);
+                })
+            }
+        });
+    }
+
+</script>
+<table id="tblPanel">
+    <thead>
+        <tr>
+            <th>Panel Id</th>
+            <th>Panel Name</th>
+            <th>Panel Status</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

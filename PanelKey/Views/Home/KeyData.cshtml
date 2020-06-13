@@ -1,0 +1,33 @@
+﻿
+<script language="javascript">
+    function GetKeys(panelId) {
+        $.ajax({
+            url: "https://localhost:44345/api/key?panelId="+panelId,
+            type: "GET",
+            success: function (data) {
+                $("#tblKey tbody").empty();
+
+                $.each(data.result, function (i, val) {
+                    var $row = $('<tr></tr>');
+                    $row.append($('<td></td>').html(val.KeyId));
+                    $row.append($('<td></td>').html(val.KeyName));
+                    $row.append($('<td></td>').html(val.KeyDescription));
+                    $row.append($('<td></td>').html(val.KeyStatusName));
+                    $("#tblKey tbody").append($row);
+                })
+            }
+        });
+    }
+
+</script>
+<table id="tblKey">
+    <thead>
+        <tr>
+            <th>Key Id</th>
+            <th>Key Name</th>
+            <th>Key Description</th>
+            <th>Key Status</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

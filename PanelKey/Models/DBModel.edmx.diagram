@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1a801e78b0b54163a8677c8bba279f03" Name="Diagram1">
+        <EntityTypeShape EntityType="dbMyHouseKeyModel.Tbl_Key" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyHouseKeyModel.Tbl_Panel" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyHouseKeyModel.Tbl_PanelKey" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyHouseKeyModel.Tbl_User" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbMyHouseKeyModel.Tbl_UserKey" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="dbMyHouseKeyModel.FK__Tbl_Panel__KeyId__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="dbMyHouseKeyModel.FK__Tbl_UserK__KeyId__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="dbMyHouseKeyModel.FK__Tbl_Panel__Panel__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="dbMyHouseKeyModel.FK__Tbl_UserK__UserI__2F10007B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

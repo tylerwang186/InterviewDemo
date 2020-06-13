@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbMyHouseKeyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Key">
+          <Key>
+            <PropertyRef Name="KeyId" />
+          </Key>
+          <Property Name="KeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KeyName" Type="varchar" MaxLength="500" />
+          <Property Name="KeyDescription" Type="varchar" MaxLength="500" />
+          <Property Name="KeyStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Panel">
+          <Key>
+            <PropertyRef Name="PanelId" />
+          </Key>
+          <Property Name="PanelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PanelName" Type="varchar" MaxLength="500" />
+          <Property Name="PanelStatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_PanelKey">
+          <Key>
+            <PropertyRef Name="PanelKeyId" />
+          </Key>
+          <Property Name="PanelKeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PanelId" Type="int" />
+          <Property Name="KeyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Tbl_UserKey">
+          <Key>
+            <PropertyRef Name="UserKeyId" />
+          </Key>
+          <Property Name="UserKeyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KeyId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="KeyStatus" Type="int" />
+        </EntityType>
+        <Association Name="FK__Tbl_Panel__KeyId__2A4B4B5E">
+          <End Role="Tbl_Key" Type="Self.Tbl_Key" Multiplicity="0..1" />
+          <End Role="Tbl_PanelKey" Type="Self.Tbl_PanelKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Key">
+              <PropertyRef Name="KeyId" />
+            </Principal>
+            <Dependent Role="Tbl_PanelKey">
+              <PropertyRef Name="KeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Panel__Panel__29572725">
+          <End Role="Tbl_Panel" Type="Self.Tbl_Panel" Multiplicity="0..1" />
+          <End Role="Tbl_PanelKey" Type="Self.Tbl_PanelKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Panel">
+              <PropertyRef Name="PanelId" />
+            </Principal>
+            <Dependent Role="Tbl_PanelKey">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_UserK__KeyId__300424B4">
+          <End Role="Tbl_Key" Type="Self.Tbl_Key" Multiplicity="0..1" />
+          <End Role="Tbl_UserKey" Type="Self.Tbl_UserKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Key">
+              <PropertyRef Name="KeyId" />
+            </Principal>
+            <Dependent Role="Tbl_UserKey">
+              <PropertyRef Name="KeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_UserK__UserI__2F10007B">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_UserKey" Type="Self.Tbl_UserKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_UserKey">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbMyHouseKeyModelStoreContainer">
+          <EntitySet Name="Tbl_Key" EntityType="Self.Tbl_Key" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Panel" EntityType="Self.Tbl_Panel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_PanelKey" EntityType="Self.Tbl_PanelKey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_User" EntityType="Self.Tbl_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_UserKey" EntityType="Self.Tbl_UserKey" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tbl_Panel__KeyId__2A4B4B5E" Association="Self.FK__Tbl_Panel__KeyId__2A4B4B5E">
+            <End Role="Tbl_Key" EntitySet="Tbl_Key" />
+            <End Role="Tbl_PanelKey" EntitySet="Tbl_PanelKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Panel__Panel__29572725" Association="Self.FK__Tbl_Panel__Panel__29572725">
+            <End Role="Tbl_Panel" EntitySet="Tbl_Panel" />
+            <End Role="Tbl_PanelKey" EntitySet="Tbl_PanelKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_UserK__KeyId__300424B4" Association="Self.FK__Tbl_UserK__KeyId__300424B4">
+            <End Role="Tbl_Key" EntitySet="Tbl_Key" />
+            <End Role="Tbl_UserKey" EntitySet="Tbl_UserKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_UserK__UserI__2F10007B" Association="Self.FK__Tbl_UserK__UserI__2F10007B">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_UserKey" EntitySet="Tbl_UserKey" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbMyHouseKeyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Key">
+          <Key>
+            <PropertyRef Name="KeyId" />
+          </Key>
+          <Property Name="KeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KeyDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KeyStatus" Type="Int32" />
+          <NavigationProperty Name="Tbl_PanelKey" Relationship="Self.FK__Tbl_Panel__KeyId__2A4B4B5E" FromRole="Tbl_Key" ToRole="Tbl_PanelKey" />
+          <NavigationProperty Name="Tbl_UserKey" Relationship="Self.FK__Tbl_UserK__KeyId__300424B4" FromRole="Tbl_Key" ToRole="Tbl_UserKey" />
+        </EntityType>
+        <EntityType Name="Tbl_Panel">
+          <Key>
+            <PropertyRef Name="PanelId" />
+          </Key>
+          <Property Name="PanelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PanelName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PanelStatusId" Type="Int32" />
+          <NavigationProperty Name="Tbl_PanelKey" Relationship="Self.FK__Tbl_Panel__Panel__29572725" FromRole="Tbl_Panel" ToRole="Tbl_PanelKey" />
+        </EntityType>
+        <EntityType Name="Tbl_PanelKey">
+          <Key>
+            <PropertyRef Name="PanelKeyId" />
+          </Key>
+          <Property Name="PanelKeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PanelId" Type="Int32" />
+          <Property Name="KeyId" Type="Int32" />
+          <NavigationProperty Name="Tbl_Key" Relationship="Self.FK__Tbl_Panel__KeyId__2A4B4B5E" FromRole="Tbl_PanelKey" ToRole="Tbl_Key" />
+          <NavigationProperty Name="Tbl_Panel" Relationship="Self.FK__Tbl_Panel__Panel__29572725" FromRole="Tbl_PanelKey" ToRole="Tbl_Panel" />
+        </EntityType>
+        <EntityType Name="Tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_UserKey" Relationship="Self.FK__Tbl_UserK__UserI__2F10007B" FromRole="Tbl_User" ToRole="Tbl_UserKey" />
+        </EntityType>
+        <EntityType Name="Tbl_UserKey">
+          <Key>
+            <PropertyRef Name="UserKeyId" />
+          </Key>
+          <Property Name="UserKeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="KeyStatus" Type="Int32" />
+          <NavigationProperty Name="Tbl_Key" Relationship="Self.FK__Tbl_UserK__KeyId__300424B4" FromRole="Tbl_UserKey" ToRole="Tbl_Key" />
+          <NavigationProperty Name="Tbl_User" Relationship="Self.FK__Tbl_UserK__UserI__2F10007B" FromRole="Tbl_UserKey" ToRole="Tbl_User" />
+        </EntityType>
+        <Association Name="FK__Tbl_Panel__KeyId__2A4B4B5E">
+          <End Role="Tbl_Key" Type="Self.Tbl_Key" Multiplicity="0..1" />
+          <End Role="Tbl_PanelKey" Type="Self.Tbl_PanelKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Key">
+              <PropertyRef Name="KeyId" />
+            </Principal>
+            <Dependent Role="Tbl_PanelKey">
+              <PropertyRef Name="KeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_UserK__KeyId__300424B4">
+          <End Role="Tbl_Key" Type="Self.Tbl_Key" Multiplicity="0..1" />
+          <End Role="Tbl_UserKey" Type="Self.Tbl_UserKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Key">
+              <PropertyRef Name="KeyId" />
+            </Principal>
+            <Dependent Role="Tbl_UserKey">
+              <PropertyRef Name="KeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Panel__Panel__29572725">
+          <End Role="Tbl_Panel" Type="Self.Tbl_Panel" Multiplicity="0..1" />
+          <End Role="Tbl_PanelKey" Type="Self.Tbl_PanelKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Panel">
+              <PropertyRef Name="PanelId" />
+            </Principal>
+            <Dependent Role="Tbl_PanelKey">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_UserK__UserI__2F10007B">
+          <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+          <End Role="Tbl_UserKey" Type="Self.Tbl_UserKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_UserKey">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbMyHouseKeyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Key" EntityType="Self.Tbl_Key" />
+          <EntitySet Name="Tbl_Panel" EntityType="Self.Tbl_Panel" />
+          <EntitySet Name="Tbl_PanelKey" EntityType="Self.Tbl_PanelKey" />
+          <EntitySet Name="Tbl_User" EntityType="Self.Tbl_User" />
+          <EntitySet Name="Tbl_UserKey" EntityType="Self.Tbl_UserKey" />
+          <AssociationSet Name="FK__Tbl_Panel__KeyId__2A4B4B5E" Association="Self.FK__Tbl_Panel__KeyId__2A4B4B5E">
+            <End Role="Tbl_Key" EntitySet="Tbl_Key" />
+            <End Role="Tbl_PanelKey" EntitySet="Tbl_PanelKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_UserK__KeyId__300424B4" Association="Self.FK__Tbl_UserK__KeyId__300424B4">
+            <End Role="Tbl_Key" EntitySet="Tbl_Key" />
+            <End Role="Tbl_UserKey" EntitySet="Tbl_UserKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Panel__Panel__29572725" Association="Self.FK__Tbl_Panel__Panel__29572725">
+            <End Role="Tbl_Panel" EntitySet="Tbl_Panel" />
+            <End Role="Tbl_PanelKey" EntitySet="Tbl_PanelKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_UserK__UserI__2F10007B" Association="Self.FK__Tbl_UserK__UserI__2F10007B">
+            <End Role="Tbl_User" EntitySet="Tbl_User" />
+            <End Role="Tbl_UserKey" EntitySet="Tbl_UserKey" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbMyHouseKeyModelStoreContainer" CdmEntityContainer="dbMyHouseKeyEntities">
+          <EntitySetMapping Name="Tbl_Key">
+            <EntityTypeMapping TypeName="dbMyHouseKeyModel.Tbl_Key">
+              <MappingFragment StoreEntitySet="Tbl_Key">
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="KeyDescription" ColumnName="KeyDescription" />
+                <ScalarProperty Name="KeyStatus" ColumnName="KeyStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Panel">
+            <EntityTypeMapping TypeName="dbMyHouseKeyModel.Tbl_Panel">
+              <MappingFragment StoreEntitySet="Tbl_Panel">
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+                <ScalarProperty Name="PanelName" ColumnName="PanelName" />
+                <ScalarProperty Name="PanelStatusId" ColumnName="PanelStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_PanelKey">
+            <EntityTypeMapping TypeName="dbMyHouseKeyModel.Tbl_PanelKey">
+              <MappingFragment StoreEntitySet="Tbl_PanelKey">
+                <ScalarProperty Name="PanelKeyId" ColumnName="PanelKeyId" />
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_User">
+            <EntityTypeMapping TypeName="dbMyHouseKeyModel.Tbl_User">
+              <MappingFragment StoreEntitySet="Tbl_User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_UserKey">
+            <EntityTypeMapping TypeName="dbMyHouseKeyModel.Tbl_UserKey">
+              <MappingFragment StoreEntitySet="Tbl_UserKey">
+                <ScalarProperty Name="UserKeyId" ColumnName="UserKeyId" />
+                <ScalarProperty Name="KeyId" ColumnName="KeyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="KeyStatus" ColumnName="KeyStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

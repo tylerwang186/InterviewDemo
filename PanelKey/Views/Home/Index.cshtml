@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+    table {
+        padding-top : 50px;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        text-align:center;
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2;}
+
+    tr:hover {background-color: #ddd;}
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <title>Index</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetPanels();
+            GetKeys(0);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        @Html.Partial("PanelData")
+        @Html.Partial("KeyData")
+    </div>
+</body>
+</html>

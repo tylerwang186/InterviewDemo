@@ -1,0 +1,106 @@
+CREATE DATABASE [dbMyHouseKey]
+go
+
+use [dbMyHouseKey]
+go
+
+CREATE TABLE [dbo].[Tbl_Panel](
+	[PanelId] [int] IDENTITY(1,1) NOT NULL,
+	[PanelName] [varchar](500) NULL,
+	[PanelStatusId] [int] NULL,
+PRIMARY KEY CLUSTERED
+(
+	[PanelId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[Tbl_Key](
+	[KeyId] [int] IDENTITY(1,1) NOT NULL,
+	[KeyName] [varchar](500) NULL,
+	[KeyDescription] [varchar](500) NULL,
+	[KeyStatus] [int] NULL,
+PRIMARY KEY CLUSTERED
+(
+	[KeyId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+UNIQUE NONCLUSTERED
+(
+	[KeyName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+CREATE TABLE [dbo].[Tbl_PanelKey](
+	[PanelKeyId] [int] IDENTITY(1,1) NOT NULL,
+	[PanelId] [int] NULL,
+	[KeyId] [int] NULL,
+PRIMARY KEY CLUSTERED
+(
+	[PanelKeyId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+CREATE TABLE [dbo].[Tbl_UserKey](
+	[UserKeyId] [int] IDENTITY(1,1) NOT NULL,
+	[KeyId] [int] NULL,
+	[UserId] [int] NULL,
+	[KeyStatus] [int] NULL,
+PRIMARY KEY CLUSTERED
+(
+	[UserKeyId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[Tbl_User](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [varchar](500) NULL,
+PRIMARY KEY CLUSTERED
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Tbl_PanelKey]  WITH CHECK ADD FOREIGN KEY([PanelId])
+REFERENCES [dbo].[Tbl_Panel] ([PanelId])
+GO
+
+ALTER TABLE [dbo].[Tbl_PanelKey]  WITH CHECK ADD FOREIGN KEY([KeyId])
+REFERENCES [dbo].[Tbl_Key] ([KeyId])
+GO
+
+ALTER TABLE [dbo].[Tbl_UserKey]  WITH CHECK ADD FOREIGN KEY([UserId])
+REFERENCES [dbo].[Tbl_User] ([UserId])
+GO
+
+ALTER TABLE [dbo].[Tbl_UserKey]  WITH CHECK ADD FOREIGN KEY([KeyId])
+REFERENCES [dbo].[Tbl_Key] ([KeyId])
+GO
+
+INSERT INTO [dbo].[Tbl_Panel] VALUES('Illuminated Panel',1)
+GO
+
+INSERT INTO [dbo].[Tbl_Panel] VALUES('Touch Panel',1)
+GO
+
+INSERT INTO [dbo].[Tbl_Key]([KeyName], [KeyDescription], [KeyStatus]) VALUES('Test Key', 'This is Test Key',1)
+GO
+
+INSERT INTO [dbo].[Tbl_Key]([KeyName], [KeyDescription], [KeyStatus]) VALUES('Public Key', 'This is Public Key',1)
+GO
+
+INSERT INTO [dbo].[Tbl_Key]([KeyName], [KeyDescription], [KeyStatus]) VALUES('Master Key', 'This is Master Key',0)
+GO
+
+
+
